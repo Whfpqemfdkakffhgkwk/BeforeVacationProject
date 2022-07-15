@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
 {
     Rigidbody2D rb;
     private int jumpCount = 2;
+    public float speed;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -13,7 +14,9 @@ public class Player : MonoBehaviour
     }
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        //앞으로 움직이는 코드
+        transform.position += Vector3.right * speed * Time.deltaTime;
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             Jump();
         }
