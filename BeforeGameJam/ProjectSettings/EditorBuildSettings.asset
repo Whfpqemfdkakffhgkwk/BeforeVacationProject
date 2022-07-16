@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/LeeDaeWoon/Scenes/Stage_Pick.unity
+    guid: eb563b89e8d82e54f8181790ad26099f
   m_configObjects: {}
