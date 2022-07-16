@@ -8,6 +8,6 @@ public class DesignPattern<T> : MonoBehaviour where T : MonoBehaviour
 
     protected virtual void Awake()
     {
-        Instance = typeof(T) as T;
+        Instance = FindObjectOfType(typeof(T)) as T;
     }
 }

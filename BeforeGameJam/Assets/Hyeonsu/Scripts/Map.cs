@@ -6,6 +6,6 @@ public class Map : MonoBehaviour
 {
     void Update()
     {
-        transform.position += Time.deltaTime *
+        transform.position += Vector3.left * Time.deltaTime * Player.Instance.speed;
     }
 }
