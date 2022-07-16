@@ -21,6 +21,10 @@ public class Player : MonoBehaviour
         {
             Jump();
         }
+        if(Input.GetKeyDown(KeyCode.M) && jumpCount == 2)
+        {
+
+        }
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -44,14 +48,38 @@ public class Player : MonoBehaviour
             jumpCount--;
         }
     }
+    void Sliding()
+    {
 
+    }
     void Hit(GameObject CollObj)
     {
         if (jumpCount == 2)
+        {
             rb.AddExplosionForce(300f, CollObj.transform.position, 300f, 10f);
+            StartCoroutine(SpeedDown());
+        }
         else
+        {
             rb.AddExplosionForce(300f, CollObj.transform.position, 300f);
+            StartCoroutine(SpeedDown());
+
+        }
 
     }
 
+    IEnumerator SpeedDown()
+    {
+        speed = 1;
+        while (true)
+        {
+            speed += Time.deltaTime;
+            yield return null;
+            if (speed >= 5)
+            {
+                speed = 5;
+                break;
+            }
+        }
+    }
 }
