@@ -3,25 +3,36 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
+using UnityEngine.UI;
 
 public class Title_Manageer : MonoBehaviour
 {
     [Header("타이틀 로고")]
     [SerializeField] GameObject TItle_Logo;
 
-    [Header("버튼")]
-    [SerializeField] GameObject Exit_Btn;
-    [SerializeField] GameObject Start_Btn;
-    [SerializeField] GameObject Setting_Btn;
+    [Header("UI")]
+    [SerializeField] Image Touch_Limit;
 
-    [Header("창")]
+    [Space(10)]
+    [SerializeField] GameObject Exit_Btn;
     [SerializeField] GameObject Exit_Window;
+
+    [Space(10)]
+    [SerializeField] GameObject Start_Btn;
     [SerializeField] GameObject Start_Window;
+
+    [Space(10)]
+    [SerializeField] GameObject Setting_Btn;
     [SerializeField] GameObject Setting_Window;
+
+    [Header("캐릭터")]
+    [SerializeField] GameObject Character;
 
     void Start()
     {
         Logo_Director();
+        Character_Move();
+        Touch_Limit.raycastTarget = false;
     }
 
     void Update()
@@ -30,55 +41,57 @@ public class Title_Manageer : MonoBehaviour
     }
 
     void Logo_Director() => TItle_Logo.transform.DOLocalMoveY(341f, 1f).SetEase(Ease.OutBounce);
+    void Character_Move() => Character.transform.DOLocalMoveX(-1040f, 2f);
 
     #region 시작 버튼
-    public void Start_Click()
-    {
-        BtnDirector_Open();
-        Debug.Log("시작");
-    }
+
+    public void Start_Click() => SceneManager.LoadScene("Stage_Pick");
+
     #endregion
 
     #region 설정 버튼
-    public void Setting_Click()
+    public void Setting_Click() => SettingWindow_Open();
+
+    public void Setting_Close() => StartCoroutine(SettingWindow_Close());
+
+    #region 창 연출
+    IEnumerator SettingWindow_Close()
     {
-        BtnDirector_Open();
-        Debug.Log("설정");
+        Setting_Window.transform.DOScale(new Vector3(0, 0, 0), 1f).SetEase(Ease.InBack);
+        yield return new WaitForSeconds(1f);
+        Touch_Limit.raycastTarget = false;
+    }
+
+    void SettingWindow_Open()
+    {
+        Touch_Limit.raycastTarget = true;
+        Setting_Window.transform.DOScale(new Vector3(1, 1, 1), 1f).SetEase(Ease.OutBack);
     }
     #endregion
 
-    #region 게임종료 버튼
-    public void Exit_Click()
-    {
-        BtnDirector_Open();
-        ExitWindow_Open();
-    }
+    #endregion
+
+    #region 게임종료
+    public void Exit_Click() => ExitWindow_Open();
 
     public void Exit_Yes() => Application.Quit();
 
-    public void Exit_No()
+    public void Exit_No() => StartCoroutine(ExitWindow_Close());
+
+    #region 창 연출
+    IEnumerator ExitWindow_Close()
     {
-        ExitWindow_Close();
-        BtnDirector_Close();
+        Exit_Window.transform.DOScale(new Vector3(0, 0, 0), 1f).SetEase(Ease.InBack);
+        yield return new WaitForSeconds(1f);
+        Touch_Limit.raycastTarget = false;
     }
 
-    void ExitWindow_Close() => Exit_Window.transform.DOScale(new Vector3(0, 0, 0), 1f).SetEase(Ease.OutBack);
-    void ExitWindow_Open() => Exit_Window.transform.DOScale(new Vector3(1, 1, 1), 1f).SetEase(Ease.OutBack);
+    void ExitWindow_Open()
+    {
+        Touch_Limit.raycastTarget = true;
+        Exit_Window.transform.DOScale(new Vector3(1, 1, 1), 1f).SetEase(Ease.OutBack);
+    }
     #endregion
 
-    #region 버튼 연출
-    void BtnDirector_Open()
-    {
-        Start_Btn.transform.DOLocalMoveX(-1900, 1).SetEase(Ease.OutCirc);
-        Setting_Btn.transform.DOLocalMoveX(1900, 1).SetEase(Ease.OutCirc);
-        Exit_Btn.transform.DOLocalMoveX(-1900, 1).SetEase(Ease.OutCirc);
-    }
-
-    void BtnDirector_Close()
-    {
-        Start_Btn.transform.DOLocalMoveX(0, 1).SetEase(Ease.OutCirc);
-        Setting_Btn.transform.DOLocalMoveX(0, 1).SetEase(Ease.OutCirc);
-        Exit_Btn.transform.DOLocalMoveX(0, 1).SetEase(Ease.OutCirc);
-    }
     #endregion
 }
