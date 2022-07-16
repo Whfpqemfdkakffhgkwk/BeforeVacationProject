@@ -45,7 +45,11 @@ public class Title_Manageer : MonoBehaviour
 
     #region 시작 버튼
 
-    public void Start_Click() => SceneManager.LoadScene("Stage_Pick");
+    public void Start_Click()
+    {
+        DOTween.PauseAll();
+        SceneManager.LoadScene("Stage_Pick");
+    }
 
     #endregion
 
