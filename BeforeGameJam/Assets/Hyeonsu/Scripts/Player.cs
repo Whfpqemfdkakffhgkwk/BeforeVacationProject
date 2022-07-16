@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
-public class Player : DesignPattern<Player>
+public class Player : Singleton<Player>
 {
     Rigidbody2D rb;
     private int jumpCount = 2;
