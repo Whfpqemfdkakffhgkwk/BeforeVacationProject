@@ -217,8 +217,8 @@ RectTransform:
   m_Children:
   - {fileID: 1542438399}
   - {fileID: 1263940626}
-  - {fileID: 1794095325}
   - {fileID: 2069792965}
+  - {fileID: 1794095325}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -445,7 +445,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 113798172}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 334546901}
+        m_TargetAssemblyTypeName: Title_Manageer, Assembly-CSharp
+        m_MethodName: Exit_No
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &113798172
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -517,6 +529,9 @@ MonoBehaviour:
   Exit_Btn: {fileID: 1073968595}
   Start_Btn: {fileID: 940889655}
   Setting_Btn: {fileID: 525036586}
+  Exit_Window: {fileID: 1043567551}
+  Start_Window: {fileID: 0}
+  Setting_Window: {fileID: 0}
 --- !u!4 &334546902
 Transform:
   m_ObjectHideFlags: 0
@@ -615,7 +630,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 501288641}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 334546901}
+        m_TargetAssemblyTypeName: Title_Manageer, Assembly-CSharp
+        m_MethodName: Exit_Yes
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &501288641
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1993,7 +2020,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1794095325
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2010,7 +2037,7 @@ RectTransform:
   - {fileID: 525036587}
   - {fileID: 1073968596}
   m_Father: {fileID: 3149015}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2182,7 +2209,7 @@ RectTransform:
   m_Children:
   - {fileID: 1043567552}
   m_Father: {fileID: 3149015}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
