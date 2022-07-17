@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class CameraMove : MonoBehaviour
 {
-    [SerializeField] private GameObject Player;
     private void Update()
     {
-        transform.position = new Vector3(Player.transform.position.x + 8, 0, -10);
+        transform.position = new Vector3(Player.Instance.transform.position.x + 8, 0, -10);
     }
 }
