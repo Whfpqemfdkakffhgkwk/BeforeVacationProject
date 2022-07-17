@@ -8,6 +8,8 @@ TagManager:
   - Obstacle
   - Jelly
   - TopObstacle
+  - Map
+  - Background
   layers:
   - Default
   - TransparentFX
