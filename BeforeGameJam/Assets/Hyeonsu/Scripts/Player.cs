@@ -52,6 +52,13 @@ public class Player : Singleton<Player>
             speed += 0.2f;
         }
     }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("TopObstacle"))
+        {
+            StartCoroutine(SpeedDown());
+        }
+    }
     void Jump()
     {
         if (jumpCount > 0)
@@ -86,11 +93,13 @@ public class Player : Singleton<Player>
         if (jumpCount == 2)
         {
             rb.AddExplosionForce(300f, CollObj.transform.position, 300f, 10f);
+            jumpCount = 0;
             StartCoroutine(SpeedDown());
         }
         else
         {
             rb.AddExplosionForce(300f, CollObj.transform.position, 300f);
+            jumpCount = 0;
             StartCoroutine(SpeedDown());
         }
 
