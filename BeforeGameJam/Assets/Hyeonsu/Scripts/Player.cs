@@ -94,6 +94,7 @@ public class Player : Singleton<Player>
         {
             rb.AddExplosionForce(300f, CollObj.transform.position, 300f, 10f);
             jumpCount = 0;
+            SlidingRise();
             StartCoroutine(SpeedDown());
         }
         else
