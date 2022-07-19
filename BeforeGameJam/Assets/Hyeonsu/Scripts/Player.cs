@@ -51,6 +51,11 @@ public class Player : Singleton<Player>
             Destroy(collision.gameObject);
             speed += 0.2f;
         }
+        else if(collision.gameObject.CompareTag("Coin"))
+        {
+            Destroy(collision.gameObject);
+            GameManager.Instance.coin += 100;
+        }
     }
     private void OnTriggerStay2D(Collider2D collision)
     {

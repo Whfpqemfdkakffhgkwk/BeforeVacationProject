@@ -10,6 +10,7 @@ TagManager:
   - TopObstacle
   - Map
   - Background
+  - Coin
   layers:
   - Default
   - TransparentFX
