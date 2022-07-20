@@ -19,6 +19,9 @@ public class GameManager : Singleton<GameManager>
 
     private void Start()
     {
+        Coin_Upgrade += 1;
+        TimeLimit_Upgrade += 1;
+
         if (Instance != this)
             Destroy(gameObject);
         else

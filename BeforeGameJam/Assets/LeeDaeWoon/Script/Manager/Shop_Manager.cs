@@ -106,7 +106,7 @@ public class Shop_Manager : MonoBehaviour
                 else if (GameManager.Instance.Coin_Upgrade == 20)
                 {
 
-                    Level.text = "Max";
+                    Level.text = "·¹º§ : Max";
 
                 }
 
