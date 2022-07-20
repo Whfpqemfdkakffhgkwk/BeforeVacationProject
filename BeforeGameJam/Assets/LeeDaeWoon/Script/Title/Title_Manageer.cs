@@ -37,7 +37,7 @@ public class Title_Manageer : MonoBehaviour
 
     void Update()
     {
-
+        Mobile_Back();
     }
 
     void Logo_Director() => TItle_Logo.transform.DOLocalMoveY(341f, 1f).SetEase(Ease.OutBounce);
@@ -81,6 +81,15 @@ public class Title_Manageer : MonoBehaviour
     public void Exit_Yes() => Application.Quit();
 
     public void Exit_No() => StartCoroutine(ExitWindow_Close());
+
+    public void Mobile_Back()
+    {
+        if (Application.platform == RuntimePlatform.Android)
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+                Application.Quit();
+        }
+    }
 
     #region √¢ ø¨√‚
     IEnumerator ExitWindow_Close()
