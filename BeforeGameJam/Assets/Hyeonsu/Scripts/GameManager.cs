@@ -10,14 +10,12 @@ public class GameManager : Singleton<GameManager>
     public float TimeLimit; // 현재 제한시간
     public float Bigger_Time; // 현재 거대화 지속 시간
 
-    [Header("상점")]
+    public bool Bigger_Appearance = false; // 거대화 출현 가능
+
+    [Header("업그레이드")]
     public float Coin_Upgrade;
     public float TimeLimit_Upgrade;
     public float Bigger_Upgrade;
-
-    public bool CoinClick_Check = false;
-    public bool TimeLimitClick_Check = false;
-    public bool BiggerClick_Check = false;
 
     private void Start()
     {
@@ -25,5 +23,11 @@ public class GameManager : Singleton<GameManager>
             Destroy(gameObject);
         else
             DontDestroyOnLoad(gameObject);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.G))
+            coin += 1000;
     }
 }

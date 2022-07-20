@@ -6,63 +6,167 @@ using UnityEngine.UI;
 
 public class Shop_Manager : MonoBehaviour
 {
+    public enum Ability
+    {
+        CoinUP,
+        TimeLimit,
+        Bigger,
+        None
+    }
+    public Ability ability;
+
+    public TextMeshProUGUI Bigger_Text;
+
+    [Header("능력 정보")]
+    public string Ability_Name;
+    public TextMeshProUGUI Price;
+    public TextMeshProUGUI Level;
+
     public TextMeshProUGUI Upgrade_Text;
 
-    string Ability_Name;
+    public GameObject Upgrade_Btn;
+
 
     void Start()
     {
+        ability = Ability.None;
     }
 
     void Update()
     {
-        Upgrade_Value();
+        Ability_Value();
     }
 
-    void Upgrade_Value()
+    public void Upgrade_Click()
     {
-        if (GameManager.Instance.CoinClick_Check == true)
+        float Coin = GameManager.Instance.coin;
+
+        float Coin_Upgrade = GameManager.Instance.Coin_Upgrade;
+        float TimeLimit_Upgrade = GameManager.Instance.TimeLimit_Upgrade;
+        float Bigger_Upgrade = GameManager.Instance.Bigger_Upgrade;
+
+        switch (ability)
         {
-            Upgrade_Text.text = Ability_Name + GameManager.Instance.Coin_increase + "    ▶    " + (GameManager.Instance.Coin_increase + 50);
+            case Ability.CoinUP:
+                if (Coin >= Coin_Upgrade * 300)
+                {
+                    GameManager.Instance.coin -= GameManager.Instance.Coin_Upgrade * 300;
+                    GameManager.Instance.Coin_increase += 50;
+                    GameManager.Instance.Coin_Upgrade += 1;
+                }
+                break;
 
-        }
+            case Ability.TimeLimit:
+                if (Coin >= TimeLimit_Upgrade * 150)
+                {
+                    GameManager.Instance.coin -= GameManager.Instance.TimeLimit_Upgrade * 300;
+                    GameManager.Instance.TimeLimit += 0.5f;
+                    GameManager.Instance.TimeLimit_Upgrade++;
+                }
+                break;
 
-        if (GameManager.Instance.TimeLimitClick_Check == true)
-            Upgrade_Text.text = Ability_Name + GameManager.Instance.TimeLimit + "    ▶    " + (GameManager.Instance.TimeLimit + 0.5f);
+            case Ability.Bigger:
+                if (Bigger_Upgrade >= 1)
+                {
+                    if (Coin >= Bigger_Upgrade * 1000)
+                    {
+                        GameManager.Instance.coin -= GameManager.Instance.Bigger_Upgrade * 300;
+                        GameManager.Instance.Bigger_Time += 0.5f;
+                        GameManager.Instance.Bigger_Upgrade++;
+                    }
+                }
 
-        if (GameManager.Instance.BiggerClick_Check == true)
-        {
-            if (GameManager.Instance.Bigger_Upgrade >= 1)
-                Upgrade_Text.text = Ability_Name + GameManager.Instance.Bigger_Time + "    ▶    " + (GameManager.Instance.Bigger_Time + 1f);
-            else
-                Upgrade_Text.text = Ability_Name;
+                else
+                {
+                    if (Coin >= 5000)
+                    {
+                        GameManager.Instance.coin -= 5000;
+                        GameManager.Instance.Bigger_Upgrade++;
+                        GameManager.Instance.Bigger_Appearance = true;
+                    }
+                }
+                break;
         }
     }
+
+    #region 능력 정보
+
+    void Ability_Value()
+    {
+        switch (ability)
+        {
+            case Ability.CoinUP:
+                if (GameManager.Instance.Coin_Upgrade < 20)
+                {
+                    Upgrade_Text.text = Ability_Name + GameManager.Instance.Coin_increase + "    ▶    " + (GameManager.Instance.Coin_increase + 50);
+                    Price.text = "돈 : " + (300 * GameManager.Instance.Coin_Upgrade).ToString();
+                    Level.text = "레벨 : " + GameManager.Instance.Coin_Upgrade;
+                }
+
+                else if (GameManager.Instance.Coin_Upgrade == 20)
+                {
+
+                    Level.text = "Max";
+
+                }
+
+                Upgrade_Btn.SetActive(true);
+                break;
+
+            case Ability.TimeLimit:
+                Upgrade_Text.text = Ability_Name + GameManager.Instance.TimeLimit + "    ▶    " + (GameManager.Instance.TimeLimit + 0.5f);
+                Price.text = "돈 : " + (150 * GameManager.Instance.TimeLimit_Upgrade).ToString();
+                Level.text = "레벨 : " + GameManager.Instance.TimeLimit_Upgrade;
+                Upgrade_Btn.SetActive(true);
+                break;
+
+            case Ability.Bigger:
+                if (GameManager.Instance.Bigger_Upgrade >= 1)
+                {
+                    Upgrade_Text.text = "거대화 지속시간 증가 : " + GameManager.Instance.Bigger_Time + "    ▶    " + (GameManager.Instance.Bigger_Time + 1f);
+                    Bigger_Text.text = "거대화 지속시간 증가";
+                    Price.text = "돈 : " + (1000 * GameManager.Instance.Bigger_Upgrade).ToString();
+                    Level.text = "레벨 : " + GameManager.Instance.Bigger_Upgrade;
+                    Upgrade_Btn.SetActive(true);
+                }
+                else
+                {
+                    Upgrade_Text.text = Ability_Name;
+                    Price.text = "돈 : 5000";
+                    Upgrade_Btn.SetActive(true);
+                }
+                break;
+
+            case Ability.None:
+                Price.text = "";
+                Level.text = "";
+                Upgrade_Text.text = "";
+                Upgrade_Btn.SetActive(false);
+                break;
+        }
+    }
+
+    #endregion
+
+    #region 능력 클릭
 
     public void Ability_CoinUp()
     {
-        GameManager.Instance.CoinClick_Check = true;
-        GameManager.Instance.BiggerClick_Check = false;
-        GameManager.Instance.TimeLimitClick_Check = false;
+        ability = Ability.CoinUP;
         Ability_Name = "코인 획득증가 : ";
     }
 
     public void Ability_TimeLimit()
     {
-        GameManager.Instance.CoinClick_Check = false;
-        GameManager.Instance.BiggerClick_Check = false;
-        GameManager.Instance.TimeLimitClick_Check = true;
+        ability = Ability.TimeLimit;
         Ability_Name = "제한시간 증가 : ";
     }
 
     public void Ability_Bigger()
     {
-        GameManager.Instance.CoinClick_Check = false;
-        GameManager.Instance.BiggerClick_Check = true;
-        GameManager.Instance.TimeLimitClick_Check = false;
-        if (GameManager.Instance.Bigger_Upgrade >= 1)
-            Ability_Name = "거대화 지속시간 증가 : ";
-        else
-            Ability_Name = "거대화 해금";
+        ability = Ability.Bigger;
+        Ability_Name = "거대화 해금";
     }
+
+    #endregion
 }
