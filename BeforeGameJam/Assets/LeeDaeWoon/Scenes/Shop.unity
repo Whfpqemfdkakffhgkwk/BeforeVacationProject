@@ -766,6 +766,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ability: 0
+  Bigger_Text: {fileID: 1197865006}
+  Ability_Name: 
   Price: {fileID: 2020337148}
   Level: {fileID: 1941888191}
   Upgrade_Text: {fileID: 1212943342}
@@ -1209,8 +1211,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 321, y: 504}
-  m_SizeDelta: {x: 882.1437, y: 135.9612}
+  m_AnchoredPosition: {x: 606.49023, y: 504}
+  m_SizeDelta: {x: 1453.1239, y: 135.9612}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1212943342
 MonoBehaviour:
@@ -1941,7 +1943,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 529.5, y: 346}
+  m_AnchoredPosition: {x: 638, y: 346}
   m_SizeDelta: {x: 465.14, y: 135.9612}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1941888191
