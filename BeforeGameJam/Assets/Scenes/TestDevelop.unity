@@ -570,6 +570,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coin: 0
+  Coin_increase: 0
+  TimeLimit: 0
+  Bigger_Time: 0
+  Bigger_Appearance: 0
+  Coin_Upgrade: 0
+  TimeLimit_Upgrade: 0
+  Bigger_Upgrade: 0
 --- !u!4 &1069987015
 Transform:
   m_ObjectHideFlags: 0

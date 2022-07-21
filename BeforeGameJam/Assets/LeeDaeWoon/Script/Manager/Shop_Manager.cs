@@ -26,6 +26,9 @@ public class Shop_Manager : MonoBehaviour
 
     public GameObject Upgrade_Btn;
 
+    [Header("º¸À¯±Ý¾×")]
+    public TextMeshProUGUI Money;
+
 
     void Start()
     {
@@ -35,6 +38,7 @@ public class Shop_Manager : MonoBehaviour
     void Update()
     {
         Ability_Value();
+        Money.text = "µ· : " + GameManager.Instance.coin;
     }
 
     public void Upgrade_Click()
