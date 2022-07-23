@@ -17,6 +17,9 @@ public class GameManager : Singleton<GameManager>
     public float TimeLimit_Upgrade;
     public float Bigger_Upgrade;
 
+    [Header("스테이지")]
+    public int Stage_Clear;
+
     private void Start()
     {
         Coin_Upgrade += 1;

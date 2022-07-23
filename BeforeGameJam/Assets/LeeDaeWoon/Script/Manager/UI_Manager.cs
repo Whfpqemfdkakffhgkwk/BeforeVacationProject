@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class UI_Manager : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class UI_Manager : MonoBehaviour
     void Awake() => Inst = this;
 
     public float Coin_Number;
+    public TextMeshProUGUI Coin_Num_Text;
 
     void Start()
     {
@@ -16,6 +18,6 @@ public class UI_Manager : MonoBehaviour
 
     void Update()
     {
-        
+        Coin_Num_Text.text = (Coin_Number * GameManager.Instance.Coin_increase).ToString();
     }
 }
