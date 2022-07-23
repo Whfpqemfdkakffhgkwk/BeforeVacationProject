@@ -55,6 +55,7 @@ public class Player : Singleton<Player>
         {
             Destroy(collision.gameObject);
             GameManager.Instance.coin += 100;
+            UI_Manager.Inst.Coin_Number += 1;
         }
     }
     private void OnTriggerStay2D(Collider2D collision)
