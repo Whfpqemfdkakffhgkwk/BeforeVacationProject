@@ -11,15 +11,13 @@ public class Progress : MonoBehaviour
 
     private void Start()
     {
+        maxDis = MaxObj.transform.position.x - Player.Instance.transform.position.x;
         slider = GetComponent<Slider>();
     }
 
     private void Update()
     {
-        nowDis = Player.Instance.transform.position.x;
-        maxDis = MaxObj.transform.position.x;
-        //slider.maxValue = maxDis;
-        slider.value = nowDis / maxDis;
-        Debug.Log(nowDis / maxDis);
+        nowDis = MaxObj.transform.position.x - Player.Instance.transform.position.x;
+        slider.value = 1 - (nowDis / maxDis);
     }
 }
