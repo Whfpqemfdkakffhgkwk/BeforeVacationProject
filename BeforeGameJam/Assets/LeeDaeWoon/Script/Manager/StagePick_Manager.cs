@@ -13,6 +13,10 @@ public class StagePick_Manager : MonoBehaviour
     public Image Stage_04;
     public Image Boss_Stage;
 
+    [Header("¸Þ´º")]
+    public GameObject Menu;
+    private bool Open_Check;
+
     void Start()
     {
 
@@ -66,8 +70,25 @@ public class StagePick_Manager : MonoBehaviour
 
     #endregion
 
-    public void MenuOpen()
+    public void Menu_Click()
     {
+        StartCoroutine(MenuOpen());
+    }
 
+    public IEnumerator MenuOpen()
+    {
+        if (Open_Check == false)
+        {
+            Menu.transform.DOLocalMoveX(372f, 1f).SetEase(Ease.InOutCubic);
+            yield return new WaitForSeconds(1f);
+            Open_Check = true;
+        }
+
+        else
+        {
+            Menu.transform.DOLocalMoveX(0f, 1f).SetEase(Ease.InOutCubic);
+            yield return new WaitForSeconds(1f);
+            Open_Check = false;
+        }
     }
 }

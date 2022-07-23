@@ -1887,7 +1887,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1055479483}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1498490807}
+        m_TargetAssemblyTypeName: StagePick_Manager, Assembly-CSharp
+        m_MethodName: Menu_Click
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1055479483
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2292,6 +2304,7 @@ MonoBehaviour:
   Stage_03: {fileID: 1805037402}
   Stage_04: {fileID: 596160649}
   Boss_Stage: {fileID: 840185551}
+  Menu: {fileID: 94773038}
 --- !u!4 &1498490808
 Transform:
   m_ObjectHideFlags: 0
