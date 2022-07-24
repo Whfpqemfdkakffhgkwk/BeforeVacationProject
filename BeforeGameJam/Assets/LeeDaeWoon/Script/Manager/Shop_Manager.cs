@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Shop_Manager : MonoBehaviour
 {
@@ -92,6 +92,8 @@ public class Shop_Manager : MonoBehaviour
                 break;
         }
     }
+
+    public void Back_Click() => SceneManager.LoadScene("Stage_Pick");
 
     #region 능력 정보
 
