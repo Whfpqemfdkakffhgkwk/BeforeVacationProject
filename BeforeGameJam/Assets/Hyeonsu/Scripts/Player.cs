@@ -10,6 +10,7 @@ public class Player : Singleton<Player>
     private bool SlideWhileJumping;
     void Start()
     {
+        SlidingRise();
         rb = GetComponent<Rigidbody2D>();
 
     }
@@ -36,8 +37,9 @@ public class Player : Singleton<Player>
         switch (coll.tag)
         {
             case "Floor":
+                if (jumpCount != 2)
+                    SlideWhileJumping = true;
                 jumpCount = 2;
-                SlideWhileJumping = true;
                 break;
             case "Obstacle":
                 Hit(collision.gameObject);
@@ -51,7 +53,7 @@ public class Player : Singleton<Player>
             Destroy(collision.gameObject);
             speed += 0.2f;
         }
-        else if(collision.gameObject.CompareTag("Coin"))
+        else if (collision.gameObject.CompareTag("Coin"))
         {
             Destroy(collision.gameObject);
             GameManager.Instance.coin += 100;
