@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TestDevelop.unity
     guid: 965b824bd68b1be4993a32e3065e4168
+  - enabled: 1
+    path: Assets/LeeDaeWoon/Scenes/Shop.unity
+    guid: eba53603056e1364b9c4339218bf5445
   m_configObjects: {}
